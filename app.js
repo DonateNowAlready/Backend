@@ -1,14 +1,40 @@
-const http = require('http');
+const express = require('express');
+const mysql = require('mysql');
 
-const hostname = '127.0.0.1';
-const port = 3000;
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
+const db = mysql.createConnection({
+    host        : 'localhost',
+    user        : 'root',
+    password    : 'password'
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+db.connect((err) => {
+    if(err){
+        throw err;
+    }
+    console.log('MySql Connected...');
+});
+
+const app = express();
+
+// START - Sample Routing
+app.get('/', (req, res) => {
+    res.send("Sadaqa")
+});
+
+app.get('/createdb', (req, res) => {
+    let sql_query = 'CREATE DATABASE sampledb';
+    db.query(sql_query, (err, result) => {
+        if(err) throw err;
+        // console.log(result);
+        console.log('Database created...');
+        res.send('Database created...');
+    });
+});
+// END - Sample Routing
+
+
+
+const port = process.env.PORT || '5000';
+app.listen(port, () => {
+    console.log(`Server started on port ${port}...`);
 });
