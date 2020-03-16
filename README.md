@@ -14,8 +14,10 @@ module.exports.set = function(app) {
 ```
 **NOTE:** See `backend/controllers/sample.js` for an example.
 
-In order for your new routes to be recognized, you will need to modify the `backend/controllers/index.js` with the following code:
+In order for your new routes to be recognized, you will need to modify the `backend/controllers/index.js` with the following code changes:
 ```
+var sample = require('./sample.js');
+
 module.exports.set = function(app) {
     // Some routes
 
