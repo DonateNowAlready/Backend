@@ -1,4 +1,5 @@
 var sample = require('./sample.js');
+var transactions = require('./transactions.js');
 
 module.exports.set = function(app) {
     // START - Sample Routing
@@ -19,4 +20,5 @@ module.exports.set = function(app) {
 
     // Let sample.js set routes
     sample.set(app);
+    transactions.set(app);
  }
