@@ -2,6 +2,8 @@ var sample = require('./sample.js');
 var transactions = require('./transactions.js');
 var db = require('../database');
 
+var db = require('../database.js');
+
 module.exports.set = function(app) {
     // START - Sample Routing
     app.get('/', (req, res) => {
