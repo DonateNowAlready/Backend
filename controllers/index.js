@@ -1,5 +1,6 @@
 const sample = require('./sample.js');
-const transactions = require('./transactions.js');
+const transactions = require('./donor/transactions');
+const charge = require('./donor/charge');
 const db = require('../database');
 
 module.exports.set = function(app) {
@@ -17,4 +18,5 @@ module.exports.set = function(app) {
     // Let sample.js set routes
     sample.set(app);
     transactions.set(app);
+    charge.set(app);
  }

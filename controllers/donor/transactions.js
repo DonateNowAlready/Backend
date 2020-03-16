@@ -1,4 +1,4 @@
-const db = require('../database');
+const db = require('../../database');
 
 module.exports.set = function(app) {
     // GET '/donor/transactions' # Individual donor transactions
