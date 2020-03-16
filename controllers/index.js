@@ -1,5 +1,6 @@
 var sample = require('./sample.js');
 var transactions = require('./transactions.js');
+var db = require('../database');
 
 module.exports.set = function(app) {
     // START - Sample Routing
@@ -8,13 +9,8 @@ module.exports.set = function(app) {
     });
 
     app.get('/createdb', (req, res) => {
-        let sql_query = 'CREATE DATABASE sampledb';
-        db.query(sql_query, (err, result) => {
-            if(err) throw err;
-            // console.log(result);
-            console.log('Database created...');
-            res.send('Database created...');
-        });
+        db.createDB('sampleDB');
+        res.send('Database created!');
     });
     // END - Sample Routing
 
