@@ -15,22 +15,25 @@ db.connect((err) => {
 });
 
 const app = express();
+var controllers = require('./controllers');
+controllers.set(app);
 
-// START - Sample Routing
-app.get('/', (req, res) => {
-    res.send("Sadaqa")
-});
 
-app.get('/createdb', (req, res) => {
-    let sql_query = 'CREATE DATABASE sampledb';
-    db.query(sql_query, (err, result) => {
-        if(err) throw err;
-        // console.log(result);
-        console.log('Database created...');
-        res.send('Database created...');
-    });
-});
-// END - Sample Routing
+// // START - Sample Routing
+// app.get('/', (req, res) => {
+//     res.send("Sadaqa")
+// });
+
+// app.get('/createdb', (req, res) => {
+//     let sql_query = 'CREATE DATABASE sampledb';
+//     db.query(sql_query, (err, result) => {
+//         if(err) throw err;
+//         // console.log(result);
+//         console.log('Database created...');
+//         res.send('Database created...');
+//     });
+// });
+// // END - Sample Routing
 
 
 
