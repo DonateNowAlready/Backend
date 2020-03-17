@@ -31,10 +31,24 @@ exports.deleteDB = function(dbName) {
 }
 
 exports.getAllDonorTransactions = function(donorId, callback) {
-    let query = `SELECT * FROM sadaqa.transactions WHERE donor_id = '${donorId}';`
+    let query = `SELECT * 
+    FROM sadaqa.transactions 
+    WHERE donor_id = '${donorId}';`
     db.query(query, (err, result) => {
         if(err) throw err;
         console.log(`Obtained transactions for donor ${donorId}`);
+        callback(result);
+    });
+}
+
+exports.getRangeTransactions = function(donorId, startDate, endDate, callback) {
+    let query = `SELECT * 
+    FROM sadaqa.transactions
+    WHERE CAST(transaction_date as DATETIME) between '${startDate}' and '${endDate}' and donor_id = '${donorId}';`
+
+    db.query(query, (err, result) => {
+        if(err) throw err;
+        console.log(`Obtained transactions for donor ${donorId} in the date range ${startDate} - ${endDate}`);
         callback(result);
     });
 }
