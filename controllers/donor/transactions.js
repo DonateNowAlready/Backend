@@ -35,4 +35,14 @@ module.exports.set = function(app) {
             res.send(result);
         });
     });
+
+    app.get('/donor/transactions/custom-range', (req, res) => {
+        let donorId = req.get('donorId');
+        // Dates must be in the format "YYYY-MM-DD"
+        let startDate = req.get('startDate');
+        let endDate = req.get('endDate');
+        db.getRangeTransactions(donorId, startDate, endDate, function(result) {
+            res.send(result);
+        });
+    });
 }

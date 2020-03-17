@@ -52,3 +52,15 @@ exports.getRangeTransactions = function(donorId, startDate, endDate, callback) {
         callback(result);
     });
 }
+
+exports.addChargeEntry = function(donorId, date, amount, callback) {
+    let query = `INSERT INTO sadaqa.charges
+    values ('${donorId}' , '${date}', '${amount}')`;
+
+    db.query(query, (err, result) => {
+        if(err) throw err;
+        console.log(`Added entry into charges table for donor ${donorId} for the amount ${amount}`);
+        callback('Success');
+    });
+
+}
