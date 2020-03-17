@@ -29,3 +29,12 @@ exports.deleteDB = function(dbName) {
         console.log(`'${dbName}' database dropped.`);
     });
 }
+
+exports.getAllDonorTransactions = function(donorId, callback) {
+    let query = `SELECT * FROM sadaqa.transactions WHERE donor_id = '${donorId}';`
+    db.query(query, (err, result) => {
+        if(err) throw err;
+        console.log(`Obtained transactions for donor ${donorId}`);
+        callback(result);
+    });
+}
