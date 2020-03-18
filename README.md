@@ -25,6 +25,12 @@ module.exports.set = function(app) {
     sample.set(app);
  }
 ```
+## Documentation
+All of the documentation for routes will be implemented with `swagger-jsdoc` and `swagger-ui-express` libraries. When running the backend server.  
+
+To visualize and try out the routes currently implemented, navigate to [localhost:5000/api-docs](http://localhost:5000/api-docs).  
+
+To add your own route to the api-docs, copy the comments about the `/sample` route starting with the **@swagger** annotation.
 
 ## Testing
 Make sure that all of the libraries for this project are installed by running the command:
