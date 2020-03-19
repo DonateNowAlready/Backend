@@ -19,6 +19,6 @@ module.exports.set = function(app) {
      *          description: A successful response
      */
     app.get('/sample', (req, res) => {
-        res.send('Sample is working.');
+        res.send(['Sample is working.']);
     });
 }
