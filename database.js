@@ -13,6 +13,12 @@ db.connect((err) => {
     console.log('MySql Connected...');
 });
 
+var DB_NAME = 'sadaqa';
+console.log("node env: ", process.env.NODE_ENV);
+if (process.env.NODE_ENV == 'test') {
+    DB_NAME = 'test';
+}
+
 exports.createDB = function(dbName) {
     let sql_query = 'CREATE DATABASE ' + dbName;
     db.query(sql_query, (err, result) => {
@@ -32,7 +38,7 @@ exports.deleteDB = function(dbName) {
 
 exports.getAllDonorTransactions = function(donorId, callback) {
     let query = `SELECT * 
-    FROM sadaqa.transactions 
+    FROM ${DB_NAME}.transactions 
     WHERE donor_id = '${donorId}';`
     db.query(query, (err, result) => {
         if(err) throw err;
@@ -43,7 +49,7 @@ exports.getAllDonorTransactions = function(donorId, callback) {
 
 exports.getRangeTransactions = function(donorId, startDate, endDate, callback) {
     let query = `SELECT * 
-    FROM sadaqa.transactions
+    FROM ${DB_NAME}.transactions
     WHERE CAST(transaction_date as DATETIME) between '${startDate}' and '${endDate}' and donor_id = '${donorId}';`
 
     db.query(query, (err, result) => {
@@ -54,7 +60,7 @@ exports.getRangeTransactions = function(donorId, startDate, endDate, callback) {
 }
 
 exports.addChargeEntry = function(donorId, date, amount, callback) {
-    let query = `INSERT INTO sadaqa.charges
+    let query = `INSERT INTO ${DB_NAME}.charges
     values ('${donorId}' , '${date}', '${amount}')`;
 
     db.query(query, (err, result) => {

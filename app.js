@@ -1,6 +1,4 @@
 const express = require('express');
-const mysql = require('mysql');
-const db = require('./database');
 const controllers = require('./controllers');
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
