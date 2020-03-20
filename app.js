@@ -20,7 +20,7 @@ const swaggerOptions = {
         servers: ["http://localhost:5000"]
       }
     },
-    apis: ['app.js', './controllers/*.js', './controllers/*/*.js', ]
+    apis: ['app.js', './controllers/*.js', './controllers/donor/*.js']
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);

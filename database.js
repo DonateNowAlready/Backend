@@ -14,7 +14,6 @@ db.connect((err) => {
 });
 
 var DB_NAME = 'sadaqa';
-console.log("node env: ", process.env.NODE_ENV);
 if (process.env.NODE_ENV == 'test') {
     DB_NAME = 'test';
 }
