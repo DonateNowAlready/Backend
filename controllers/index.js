@@ -1,4 +1,7 @@
 var sample = require('./sample.js');
+const nonProfitSignUP = require('./nonprofit/signup');
+const nonProfitLogin=require('./nonprofit/login')
+const nonProfitTotalDonations=require('./nonprofit/totalDonations')
 
 var db = require('../database.js');
 
@@ -16,4 +19,8 @@ module.exports.set = function(app) {
 
     // Let sample.js set routes
     sample.set(app);
+    nonProfitSignUP.set(app)
+    nonProfitLogin.set(app)
+    nonProfitTotalDonations.set(app)
+
  }
