@@ -13,6 +13,11 @@ db.connect((err) => {
     console.log('MySql Connected...');
 });
 
+var DB_NAME = 'sadaqa';
+if (process.env.NODE_ENV == 'test') {
+    DB_NAME = 'test';
+}
+
 exports.createDB = function(dbName) {
     let sql_query = 'CREATE DATABASE ' + dbName;
     db.query(sql_query, (err, result) => {
@@ -28,4 +33,39 @@ exports.deleteDB = function(dbName) {
         if(err) throw err;
         console.log(`'${dbName}' database dropped.`);
     });
+}
+
+exports.getAllDonorTransactions = function(donorId, callback) {
+    let query = `SELECT * 
+    FROM ${DB_NAME}.transactions 
+    WHERE donor_id = '${donorId}';`
+    db.query(query, (err, result) => {
+        if(err) throw err;
+        console.log(`Obtained transactions for donor ${donorId}`);
+        callback(result);
+    });
+}
+
+exports.getRangeTransactions = function(donorId, startDate, endDate, callback) {
+    let query = `SELECT * 
+    FROM ${DB_NAME}.transactions
+    WHERE CAST(transaction_date as DATETIME) between '${startDate}' and '${endDate}' and donor_id = '${donorId}';`
+
+    db.query(query, (err, result) => {
+        if(err) throw err;
+        console.log(`Obtained transactions for donor ${donorId} in the date range ${startDate} - ${endDate}`);
+        callback(result);
+    });
+}
+
+exports.addChargeEntry = function(donorId, date, amount, callback) {
+    let query = `INSERT INTO ${DB_NAME}.charges
+    values ('${donorId}' , '${date}', '${amount}')`;
+
+    db.query(query, (err, result) => {
+        if(err) throw err;
+        console.log(`Added entry into charges table for donor ${donorId} for the amount ${amount}`);
+        callback('Success');
+    });
+
 }

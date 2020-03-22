@@ -4,7 +4,7 @@
   "description": "sample app with express.js and mysql",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --timeout 10000"
+    "test": "export NODE_ENV=test; mocha --timeout 10000"
   },
   "author": "",
   "license": "ISC",

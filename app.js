@@ -1,11 +1,10 @@
 const express = require('express');
-const mysql = require('mysql');
 const controllers = require('./controllers');
-const db = require('./database');
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
 const app = express();
+
 
 controllers.set(app);
 
@@ -21,7 +20,7 @@ const swaggerOptions = {
         servers: ["http://localhost:5000"]
       }
     },
-    apis: ['app.js', './controllers/*.js', './controllers/*/*.js', ]
+    apis: ['app.js', './controllers/*.js', './controllers/donor/*.js']
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);

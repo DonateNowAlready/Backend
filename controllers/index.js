@@ -1,9 +1,10 @@
-var sample = require('./sample.js');
-
-var db = require('../database.js');
+const sample = require('./sample.js');
+const transactions = require('./donor/transactions');
+const charge = require('./donor/charge');
+const db = require('../database');
 
 module.exports.set = function(app) {
-    // START - Sample Routing
+    // ** START **  Sample Routing
     app.get('/', (req, res) => {
         res.send("<h2>Sadaqa<h2>")
     });
@@ -12,8 +13,10 @@ module.exports.set = function(app) {
         db.createDB('sampleDB');
         res.send('Database created!');
     });
-    // END - Sample Routing
+    // ** END ** Sample Routing
 
     // Let sample.js set routes
     sample.set(app);
+    transactions.set(app);
+    charge.set(app);
  }
